@@ -1,8 +1,11 @@
 version: '3.8'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: donegeon_trials
     container_name: donegeon_trials
     ports:
       - "0:3000"
+    restart: unless-stopped

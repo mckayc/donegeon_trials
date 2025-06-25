@@ -18,31 +18,36 @@ Open [http://localhost:9002](http://localhost:9002) with your browser to see the
 
 ## Docker Deployment
 
-This application is designed to be deployed using Docker.
+This application is optimized for Docker deployment.
 
-### Build the Docker Image
+### Using Docker Compose
 
-From the root of the project, run the following command to build the Docker image:
+The easiest way to run this application with Docker is by using Docker Compose.
 
-```bash
-docker build -t donegeon_trials .
-```
+1.  **Build and run the container:**
 
-### Run the Docker Container
+    ```bash
+    docker-compose up --build -d
+    ```
+    This command builds the Docker image and starts the container in the background.
 
-To run the application inside a Docker container, use the following command.
+2.  **Check the running container and port:**
 
-This command will:
-- Name the container `donegeon_trials`.
-- Map a random available port on your host machine to port 3000 inside the container.
-- Run the container in detached mode (`-d`).
+    To see which port the application is running on, use:
+    ```bash
+    docker-compose ps
+    ```
+    Look for the `donegeon_trials` service and check the `PORTS` column. It will show something like `0.0.0.0:49153->3000/tcp`, meaning you can access the app at `http://localhost:49153`.
 
-```bash
-docker run -d --name donegeon_trials -p 0:3000 donegeon_trials
-```
+3.  **View logs:**
 
-To find out which port the container is mapped to, run:
-```bash
-docker ps
-```
-Look for the `donegeon_trials` container and check the `PORTS` column.
+    To see the container logs, run:
+    ```bash
+    docker-compose logs -f
+    ```
+
+4.  **Stop the container:**
+
+    ```bash
+    docker-compose down
+    ```
